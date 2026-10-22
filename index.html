@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Paradigmas de Programación – Guía interactiva</title>
+<style>
+:root{--bg:#f7f8fa;--fg:#1c2330;--card:#fff;--mut:#5d6778;--bd:#dde1e8;--ac:#2b5fd9;--ok:#1f9d55;--no:#d23c3c;--code:#eef1f6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12161d;--fg:#e6e9ef;--card:#1b212b;--mut:#9aa4b5;--bd:#2c3441;--ac:#6b98ff;--ok:#4cc38a;--no:#ff7676;--code:#10141b}}
+:root[data-theme="dark"]{--bg:#12161d;--fg:#e6e9ef;--card:#1b212b;--mut:#9aa4b5;--bd:#2c3441;--ac:#6b98ff;--ok:#4cc38a;--no:#ff7676;--code:#10141b}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:900px;margin:0 auto;padding:16px}
+h1{font-size:1.5rem;margin:.4em 0}p.sub{color:var(--mut);margin-top:0}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+nav button,.btn{border:1px solid var(--bd);background:var(--card);color:var(--fg);padding:8px 14px;border-radius:999px;cursor:pointer;font:inherit}
+nav button.on,.btn.pri{background:var(--ac);color:#fff;border-color:var(--ac)}
+section{display:none}section.on{display:block}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin:12px 0}
+h2{font-size:1.15rem;margin:.2em 0 .5em}
+details{background:var(--card);border:1px solid var(--bd);border-radius:10px;margin:8px 0;padding:0 14px}
+summary{cursor:pointer;padding:10px 0;font-weight:600}
+pre{background:var(--code);padding:10px 12px;border-radius:8px;overflow-x:auto;font:13px/1.5 ui-monospace,Menlo,Consolas,monospace;margin:8px 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.refs a{display:inline-block;margin:2px 8px 8px 0;color:var(--ac);font-size:.9rem}
+select,input{font:inherit;padding:6px 8px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--fg);max-width:100%}
+.res{font-weight:700;padding:2px 10px;border-radius:6px;display:inline-block}.t{background:var(--ok);color:#fff}.f{background:var(--no);color:#fff}
+.mut{color:var(--mut)}.lane{display:flex;height:30px;border-radius:6px;overflow:hidden;border:1px solid var(--bd);margin:6px 0}
+.lane div{display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;white-space:nowrap;overflow:hidden}
+.w{background:#2b5fd9}.b{background:#d23c3c}.o{background:#1f9d55}.fr{background:#8a93a5}
+.bar{height:6px;background:var(--bd);border-radius:3px;margin:4px 0}.bar i{display:block;height:100%;background:var(--ac);width:0;border-radius:3px}
+.chip{display:inline-block;padding:2px 10px;margin:2px;border-radius:999px;border:1px solid var(--bd);background:var(--code);font-size:.85rem}
+</style></head><body><main>
+<h1>Paradigmas de Programación</h1><p class="sub">Lógico (Prolog) · Funcional (Haskell) · Orientado a Eventos (C#). Tocá cada concepto, probá los simuladores y seguí las referencias.</p>
+<nav id="nav"></nav>
+
+<section id="log"><div class="card"><h2>🧪 Simulador de operadores</h2><p class="mut">Elegí una consulta y mirá qué pasa con <code>=</code>, <code>is</code>, <code>==</code>, <code>=:=</code>, <code>\=</code>.</p>
+<select id="q"></select><p><span id="qr" class="res"></span></p><p id="qe"></p></div>
+<div class="card"><h2>🌲 Recursividad: factorial(N, F)</h2><label>N = <input id="fn" type="range" min="0" max="7" value="4"> <b id="fv">4</b></label><pre id="ft"></pre></div>
+<div class="card"><h2>✂️ El corte (!)</h2><p class="mut">Probá <code>clasificar(X, T)</code> con el corte.</p><label>X = <input id="cx" type="number" value="50" style="width:90px"></label><pre>clasificar(X, pequeño) :- X &lt; 10, !.
+clasificar(X, mediano) :- X &lt; 100, !.
+clasificar(_, grande).</pre><div id="co"></div></div>
+<div id="log-c"></div></section>
+
+<section id="fun"><div class="card"><h2>🔁 Visualizador de <code>foldr</code></h2><select id="fs"></select> <button class="btn pri" id="fnx">Siguiente paso ▶</button> <button class="btn" id="frs">Reiniciar</button><pre id="fo"></pre><p id="fr" class="mut"></p></div>
+<div class="card"><h2>🧩 Currificación y aplicación parcial</h2><p class="mut"><code>producto a b c = a * b * c</code></p>a=<input id="ca" type="number" value="3" style="width:70px"> b=<input id="cb" type="number" value="4" style="width:70px"> c=<input id="cc" type="number" value="5" style="width:70px"><pre id="co2"></pre></div>
+<div class="card"><h2>😴 Evaluación perezosa</h2><button class="btn" data-lz="take">take 3 [1..]</button> <button class="btn" data-lz="ign">ignorar (sum [1..])</button> <button class="btn" data-lz="and">foldr (&&) True (repeat False)</button> <button class="btn" data-lz="sum">foldr (+) 0 [1..]</button><pre id="lo" class="mut">Elegí un ejemplo…</pre></div>
+<div id="fun-c"></div></section>
+
+<section id="poe"><div class="card"><h2>⏱️ Síncrono vs Asíncrono</h2><p class="mut">Un hilo ejecuta Tarea A (con una espera de 1 s por la BD) y luego Tarea B. ¿Qué hace el hilo mientras espera?</p>
+<button class="btn pri" data-m="s">Síncrono (bloquea)</button> <button class="btn pri" data-m="a">Asíncrono (await)</button>
+<p class="mut" style="margin:8px 0 0">Hilo H1</p><div class="lane" id="ln"></div><div class="bar"><i id="pg"></i></div><p id="lt"></p></div>
+<div class="card"><h2>💉 Ciclo de vida en Inyección de Dependencias</h2><select id="ds"><option>Transient</option><option>Scoped</option><option>Singleton</option></select> <button class="btn pri" id="dr">Nuevo request (inyecta 2 veces)</button> <button class="btn" id="dx">Reiniciar</button><div id="dl" style="margin-top:8px"></div><p id="dd" class="mut"></p></div>
+<div class="card"><h2>🗄️ Generador SQL</h2>Operación: <select id="sq"><option>INSERT</option><option>UPDATE</option><option>DELETE</option><option>SELECT</option></select> Tabla: <input id="st" value="Clientes" style="width:110px"> Condición: <input id="sc" value="Residencia = 1" style="width:140px"><pre id="so"></pre></div>
+<div id="poe-c"></div></section>
+<p class="mut" style="text-align:center;font-size:.85rem">Basado en los apuntes U4, U5 y U6 de Paradigmas de Programación (UTN FRSN).</p>
+</main>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const C={
+log:[
+["Cláusulas de Horn y Hechos/Reglas","Un programa es una base de conocimiento: hechos (verdades) y reglas (Cabeza :- Cuerpo). Se restringe a cláusulas de Horn: sin conclusiones múltiples, sin negación en la cabeza y sin OR en el cuerpo (se usan dos reglas). Se habla de éxito/falla, no de verdadero/falso (universo cerrado: lo que no se puede demostrar falla).","padre(juan, pedro).        % hecho\nabuelo(X, Z) :- padre(X, Y), padre(Y, Z).  % regla (coma = AND)\nmortal(X) :- humano(X).\nmortal(X) :- animal(X).    % OR = dos cláusulas",[["Learn Prolog Now!","https://www.let.rug.nl/bos/lpn/"],["SWISH (probar online)","https://swish.swi-prolog.org"]]],
+["Unificación y variables","La unificación busca una sustitución que haga idénticos dos términos. Una variable ligada no se reasigna; solo el backtracking la libera. ana y juan nunca unifican; un entero nunca unifica con 2+1 (compara estructura, no valor).","X = ana.          % éxito, X ligada\nX = ana, X = juan. % falla\nX = 2+1, X = 3.   % falla (no evalúa)\nX is 2+1, X = 3.  % éxito",[["Unificación (manual SWI)","https://www.swi-prolog.org/pldoc/man?section=unify"]]],
+["Operadores =, \\=, is, ==, =:=","= unifica sin evaluar; is evalúa el lado derecho y unifica; == compara estructura (sin ligar); =:= evalúa ambos lados y compara valores. Útil: == evita 'pescar' datos con variables; is evita resultados como N = 2+1.","es_dueno(U, R) :- dueno_de(R, P), U == P.  % seguro\nsiguiente(N, P) :- P is N + 1.             % evalúa",[["Comparación aritmética","https://www.swi-prolog.org/pldoc/man?section=arith"]]],
+["Functor, Predicado e Inversibilidad","Functor = nombre/aridad (padre/2). Predicado = todas las cláusulas con el mismo functor. Inversible: funciona con argumentos ligados o libres (consecuencia de la unificación). No lo es si usa is o comparaciones numéricas con variables libres.","padre(juan, X).   % hijos de juan\npadre(X, maria).  % padres de maria\nsuma(2, Y, 5).    % ERROR: is requiere derecho instanciado",[["Learn Prolog Now – Cap. 1","https://www.let.rug.nl/bos/lpn/lpnpage.php?pageid=online"]]],
+["Motor de inferencia: SLD, DFS y backtracking","Resolución SLD: toma el objetivo más a la izquierda, busca una cláusula cuya cabeza unifique y lo reemplaza por su cuerpo. Recorre el árbol SLD en profundidad (DFS), arriba→abajo e izquierda→derecha; si falla, hace backtracking al último punto de elección.","describe(0, \"es cero\").\ndescribe(_, \"es otro número\").\n?- describe(0, X).  % X = \"es cero\" ; X = \"es otro número\"",[["Execution model (Prolog)","https://www.swi-prolog.org/pldoc/man?section=builtin"],["Prolog en Wikipedia","https://es.wikipedia.org/wiki/Prolog"]]],
+["Predicados de orden superior","findall/3 junta soluciones en una lista; aggregate_all/3 (count, sum, max, min, bag, set); maplist/3 aplica a cada elemento; include/3 filtra; forall/2 verifica 'para todo'; not/1 niega por falla.","findall(auto(M,A,V,P), (auto(M,A,V,P), P>25000), R).\naggregate_all(count, auto(ford,_,_,_), N).\nforall(auto(ford,_,_,P), P > 21000).",[["Listas en SWI","https://www.swi-prolog.org/pldoc/man?section=lists"],["Aggregate","https://www.swi-prolog.org/pldoc/man?section=aggregate"]]],
+["Recursividad","Caso base (sin llamarse) + caso recursivo (se acerca al base). No hay for/while en Prolog.","longitud([], 0).\nlongitud([_|Cola], L) :- longitud(Cola, L1), L is L1 + 1.",[["Recursión – LPN cap. 3","https://www.let.rug.nl/bos/lpn/lpnpage.php?pagetype=html&pageid=lpn-htmlch3"]]]],
+fun:[
+["Funciones puras e inmutabilidad","Mismos argumentos → mismo resultado, sin efectos secundarios. Los datos no cambian: se crea una copia nueva. 'let x = 10' no es asignación: es igualdad definitoria (transparencia referencial).","aluNuevo = aluOriginal { nota = 7 }  -- copia con nota cambiada",[["Learn You a Haskell","https://learnyouahaskell.com/chapters"],["Haskell.org docs","https://www.haskell.org/documentation/"]]],
+["Tipos: Int, Integer, listas, tuplas, data","Int (64 bits), Integer (ilimitado), Double, Bool, Char, String = [Char]. Listas: mismo tipo. Tuplas: tipos mixtos. 'data' crea enumeraciones y registros (record syntax) con accesores automáticos.","data Catedra = Catedra { nombre :: String, nivel :: Int } deriving (Show)\nlet m = Catedra { nombre = \"Paradigmas\", nivel = 2 }",[["Tipos y clases de tipo","https://learnyouahaskell.com/types-and-typeclasses"]]],
+["Pattern matching y guardas","Se prueban las definiciones de arriba hacia abajo; gana la primera que coincide (y cuya guarda es True). _ es el comodín.","sumarDos (x:y:_) = x + y\nsumarDos [x]     = x\nsumarDos []      = 0\nmayor x y | x > y = x\n          | otherwise = y",[["Sintaxis en funciones","https://learnyouahaskell.com/syntax-in-functions"]]],
+["let y where","let ... in vincula identificadores inmutables a una expresión; where los define para toda la función (incluidas guardas).","clasificarIMC peso alt\n  | indice < 18.5 = \"bajo peso\"\n  | otherwise = \"normal\"\n  where indice = peso / alt ^ 2",[["Where vs Let","https://learnyouahaskell.com/syntax-in-functions#where"]]],
+["IO: valor vs función vs acción","Una acción IO describe un efecto; se ejecuta solo cuando forma parte del main. 'x <- accion' obliga a ejecutarla y liga su resultado. Devolver una acción no la ejecuta.","saludar :: IO ()\nsaludar = do\n  putStrLn \"¿Nombre?\"\n  n <- getLine\n  putStrLn (\"Hola \" ++ n)",[["Entrada y salida","https://learnyouahaskell.com/input-and-output"]]],
+["Lambda, currificación y aplicación parcial","Toda función de varios argumentos es una cadena de funciones de un argumento. Aplicar menos argumentos devuelve otra función. Reducción eta: se suprime el argumento final repetido.","(\\x y -> x + y) 3 4\ndoble = producto 2         -- eta\nmap (*2) [1,2,3]",[["Funciones de orden superior","https://learnyouahaskell.com/higher-order-functions"],["Cálculo lambda (Wikipedia)","https://es.wikipedia.org/wiki/C%C3%A1lculo_lambda"]]],
+["Composición de funciones","(f . g) x = f (g x): primero g, luego f. Con eta: procesar = f . g . h","palabraPar = even . length\nformula = duplicar . subirUno",[["Composición","https://learnyouahaskell.com/higher-order-functions#composition"]]],
+["Evaluación perezosa","Nada se calcula hasta que se necesita: permite listas infinitas y evitar cómputos. Contrapartida: puede acumular cálculos pendientes (memoria).","take 3 [1..]  -- [1,2,3]\nfoldr (&&) True (repeat False)  -- False",[["Haskell Wiki: Lazy evaluation","https://wiki.haskell.org/Lazy_evaluation"],["Probar online","https://play.haskell.org/"]]]],
+poe:[
+["Eventos y formularios","El flujo lo dicta el entorno: la app espera y reacciona. Guía: ¿Qué hay que hacer? ¿Quién (componente) lo hace? ¿Cuándo (evento)?","private void btnCalcular_Click(object sender, EventArgs e)\n{\n    int cant = txtTexto.Text.Length;\n    lblCant.Text = cant == 0 ? string.Empty : cant.ToString();\n}",[["Windows Forms","https://learn.microsoft.com/dotnet/desktop/winforms/"],["Eventos en C#","https://learn.microsoft.com/dotnet/csharp/events-overview"]]],
+["Proceso, hilo, concurrencia y paralelismo","Proceso = recursos aislados. Hilo = quien ejecuta instrucciones (todo proceso tiene uno principal). Concurrencia: tareas intercaladas (puede ser un hilo). Paralelismo: varias a la vez, requiere varios núcleos.","// 1 hilo, 3 tareas: concurrencia\n// 3 hilos, 3 núcleos: paralelismo",[["Programación asíncrona","https://learn.microsoft.com/dotnet/csharp/asynchronous-programming/"]]],
+["async / await / Task","Task representa una operación (no un hilo). await libera el hilo hasta que el Task termina y retoma desde esa línea (máquina de estados). async solo no vuelve asíncrono un método; await no crea hilos. GetAwaiter().GetResult() bloquea: evitarlo.","private async void btnConectar_Click(object s, EventArgs e)\n{\n    await conn.OpenAsync();   // libera el hilo (UI no se congela)\n}",[["Task-based async pattern","https://learn.microsoft.com/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap"]]],
+["using / await using","Garantiza llamar a Dispose()/DisposeAsync() al salir del bloque (aun con excepción), liberando conexiones y handles sin esperar al garbage collector.","await using var conn = new SqlConnection(CONN_STRING);\nawait conn.OpenAsync();",[["using statement","https://learn.microsoft.com/dotnet/csharp/language-reference/statements/using"]]],
+["Inyección de Dependencias","La clase recibe sus dependencias desde afuera (constructor), preferentemente como interfaces: bajo acoplamiento, testeabilidad, mantenibilidad. Se registran en el contenedor (ServiceCollection).","services.AddScoped<IPersonaRepository, PersonaRepositorySQL>();\nservices.AddTransient<frmPersona>();\nvar f = provider.GetRequiredService<frmPersona>();",[["DI en .NET","https://learn.microsoft.com/dotnet/core/extensions/dependency-injection"]]],
+["SQL básico","Lenguaje declarativo para bases relacionales: INSERT, UPDATE, DELETE, SELECT. Sin WHERE, UPDATE/DELETE afectan todas las filas.","SELECT DNI, ApelNom FROM Clientes WHERE Residencia = 1",[["Tutorial SQL","https://www.w3schools.com/sql/"],["SQL Server docs","https://learn.microsoft.com/sql/"]]]]
+};
+const names={log:"🧠 Lógico",fun:"λ Funcional",poe:"🖱️ Eventos"};
+Object.keys(C).forEach(k=>{$("#"+k+"-c").innerHTML="<h2>📚 Conceptos y referencias</h2>"+C[k].map(([t,d,c,r])=>`<details><summary>${t}</summary><p>${esc(d)}</p><pre>${esc(c)}</pre><div class="refs">${r.map(x=>`<a href="${x[1]}" target="_blank" rel="noopener">↗ ${x[0]}</a>`).join("")}</div></details>`).join("")});
+function show(k){$$("section").forEach(s=>s.classList.toggle("on",s.id==k));$$("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.k==k));history.replaceState(null,"","#"+k)}
+$("#nav").innerHTML=Object.keys(names).map(k=>`<button data-k="${k}">${names[k]}</button>`).join("");
+$$("#nav button").forEach(b=>b.onclick=()=>show(b.dataset.k));
+show(["log","fun","poe"].includes(location.hash.slice(1))?location.hash.slice(1):"log");
+// Prolog ops
+const Q=[["X = ana.",1,"X queda ligada a ana; unificar con una variable libre siempre tiene éxito."],["X = ana, X = juan.",0,"ana y juan son átomos distintos: no unifican."],["X = 2 + 1, X = 3.",0,"= no evalúa: el compuesto 2+1 nunca unifica con el entero 3."],["X is 2 + 1, X = 3.",1,"is evalúa 2+1 → 3, y 3 = 3 unifica."],["X = 2 + 1, X == 3.",0,"== compara estructura sin evaluar: 2+1 no es idéntico a 3."],["X = 2 + 1, X =:= 3.",1,"=:= evalúa ambos lados y compara valores (3 y 3). X sigue ligada a 2+1."],["X \\= 3.",0,"X libre podría ligarse a 3: la unificación es posible, entonces \\= falla."],["X = 3, Y = 2 + 1, X \\= Y.",1,"3 y 2+1 no unifican (estructura distinta), por lo que \\= tiene éxito."],["persona(juan) = persona(P).",1,"P se liga a juan y ambos términos quedan idénticos."],["siguienteIgual(2, 3).  % Prox = Num + 1",0,"Intenta 3 = 2+1 sin evaluar: falla. Con is, tendría éxito."]];
+$("#q").innerHTML=Q.map((q,i)=>`<option value="${i}">${esc(q[0])}</option>`).join("");
+$("#q").onchange=()=>{const q=Q[$("#q").value];$("#qr").className="res "+(q[1]?"t":"f");$("#qr").textContent=q[1]?"true":"false";$("#qe").textContent=q[2]};$("#q").onchange();
+// factorial
+function fact(){const n=+$("#fn").value;$("#fv").textContent=n;let o=[];for(let i=n;i>=0;i--)o.push(" ".repeat((n-i)*2)+(n-i?"└─ ":"")+`factorial(${i}, F${n-i})`+(i==0?"  ← caso base F=1":""));let f=1;o.push("");for(let i=1;i<=n;i++){f*=i;o.push(`F = ${i} * ${f/i} = ${f}`)}$("#ft").textContent=o.join("\n")}
+$("#fn").oninput=fact;fact();
+function cut(){const x=+$("#cx").value;let r,s;if(x<10){r="pequeño";s="1ª cláusula: X < 10 cumple, el corte descarta las otras dos."}else if(x<100){r="mediano";s="1ª falla (sin llegar al corte); 2ª cumple y el corte descarta la 3ª."}else{r="grande";s="Fallan las dos primeras antes de llegar a un corte; cae en la 3ª."}$("#co").innerHTML=`<span class="res t">T = ${r}</span> <span class="mut">${s}</span>`}
+$("#cx").oninput=cut;cut();
+// foldr
+const FS=[{n:'foldr (\\x acu -> x ++ acu) "" ["hola","que","tal"]',s:['foldr f "" ["hola","que","tal"]','"hola" ++ (foldr f "" ["que","tal"])','"hola" ++ ("que" ++ (foldr f "" ["tal"]))','"hola" ++ ("que" ++ ("tal" ++ (foldr f "" [])))','"hola" ++ ("que" ++ ("tal" ++ ""))','"hola" ++ ("que" ++ "tal")','"hola" ++ "quetal"','"holaquetal"'],r:"Resultado: \"holaquetal\""},
+{n:"foldr (-) 0 [50,-40,300]",s:["foldr (-) 0 [50,-40,300]","50 - (foldr (-) 0 [-40,300])","50 - ((-40) - (foldr (-) 0 [300]))","50 - ((-40) - (300 - (foldr (-) 0 [])))","50 - ((-40) - (300 - 0))","50 - ((-40) - 300)","50 - (-340)","390"],r:"Resultado: 390"},
+{n:"foldr (&&) True (repeat False)",s:["foldr (&&) True (repeat False)","foldr (&&) True (False : repeat False)","False && (foldr (&&) True (repeat False))  -- no evalúa el 2º","False"],r:"Termina aunque la lista es infinita (perezosa)."},
+{n:"foldr (+) 0 [1..]",s:["foldr (+) 0 [1..]","1 + (foldr (+) 0 [2..])","1 + (2 + (foldr (+) 0 [3..]))","1 + (2 + (3 + ...))  -- sumas pendientes"],r:"Nunca finaliza: (+) necesita el 2º argumento."}];let fi=0;
+$("#fs").innerHTML=FS.map((f,i)=>`<option value="${i}">${esc(f.n)}</option>`).join("");
+function fr(){fi=0;fd()}function fd(){const f=FS[$("#fs").value];$("#fo").textContent=f.s.slice(0,fi+1).map((x,i)=>(i+1)+". "+x).join("\n");$("#fr").textContent=fi>=f.s.length-1?f.r:""}
+$("#fs").onchange=fr;$("#frs").onclick=fr;$("#fnx").onclick=()=>{if(fi<FS[$("#fs").value].s.length-1)fi++;fd()};fr();
+function cur(){const a=$("#ca").value,b=$("#cb").value,c=$("#cc").value;$("#co2").textContent=`producto ${a} ${b} ${c}\n(\\a -> \\b -> \\c -> a*b*c) ${a} ${b} ${c}\n(\\b -> \\c -> ${a}*b*c) ${b} ${c}    -- aplicación parcial con 1 arg\n(\\c -> ${a}*${b}*c) ${c}\n${a} * ${b} * ${c}\n${a*b*c}`}
+["#ca","#cb","#cc"].forEach(s=>$(s).oninput=cur);cur();
+const LZ={take:"let l = [1..]\ntake 3 l → [1,2,3]\n✔ Instantáneo: solo genera los 3 elementos necesarios.",ign:"ignorar x = \"No necesito el argumento\"\nignorar (sum [1..]) → \"No necesito...\"\n✔ Instantáneo: la suma infinita nunca se evalúa.",and:"foldr (&&) True (repeat False) → False\n✔ Termina: False && _ = False.",sum:"foldr (+) 0 [1..]\n✘ Nunca termina: cada (+) espera el resto infinito."};
+$$("[data-lz]").forEach(b=>b.onclick=()=>$("#lo").textContent=LZ[b.dataset.lz]);
+// async
+let tm;function anim(m){clearInterval(tm);const sy=m=="s";const seg=sy?[["A: previo",1,"w"],["⏳ BLOQUEADO esperando BD",4,"b"],["A: posterior",1,"w"],["B",2,"w"]]:[["A: previo",1,"w"],["await → hilo libre: ejecuta B",4,"o"],["A: posterior",1,"w"],["",2,"fr"]];
+$("#ln").innerHTML=seg.map(s=>`<div class="${s[2]}" style="flex:${s[1]}">${s[0]}</div>`).join("");const T=sy?8:6,tot=8;let p=0;$("#lt").innerHTML=sy?"Total ≈ 8 u. El hilo no pudo hacer nada útil mientras esperaba.":"Total ≈ 6 u. Mientras se esperaba la BD, el mismo hilo avanzó con otra tarea (¡no es paralelismo!).";
+tm=setInterval(()=>{p+=2;$("#pg").style.width=Math.min(p,100)*(T/tot)/(sy?1:1)+"%";if(p>=100)clearInterval(tm)},60)}
+$$("[data-m]").forEach(b=>b.onclick=()=>anim(b.dataset.m));
+// DI
+let rq=0,sg=null,log=[];
+function di(){rq++;const m=$("#ds").value;const sc=rq;if(m=="Singleton")sg=sg||"#1";const id=m=="Transient"?[`#${2*rq-1}`,`#${2*rq}`]:m=="Scoped"?[`#${rq}`,`#${rq}`]:[sg,sg];
+$("#dl").innerHTML+=`<div>Request ${rq}: <span class="chip">${id[0]}</span><span class="chip">${id[1]}</span></div>`;
+$("#dd").textContent={Transient:"Cada inyección crea una instancia nueva (#distintos incluso en el mismo request).",Scoped:"Una instancia por request: se comparte dentro del request y cambia en el siguiente.",Singleton:"Una única instancia para toda la vida de la aplicación."}[m]}
+$("#dr").onclick=di;$("#dx").onclick=()=>{rq=0;sg=null;$("#dl").innerHTML=""};$("#ds").onchange=$("#dx").onclick;
+function sql(){const t=$("#st").value,c=$("#sc").value,o=$("#sq").value;$("#so").textContent={INSERT:`INSERT INTO ${t} (DNI, ApelNom, Calle, Residencia)\nVALUES (20123789, 'Romero', 'Bolivar 23', 3)`,UPDATE:`UPDATE ${t} SET Calle = 'Maipu 34'\nWHERE ${c}\n-- sin WHERE se actualizan TODAS las filas`,DELETE:`DELETE ${t}\nWHERE ${c}\n-- sin WHERE se eliminan TODAS las filas`,SELECT:`SELECT DNI, ApelNom FROM ${t}\nWHERE ${c}`}[o]}
+["#sq","#st","#sc"].forEach(s=>$(s).oninput=sql);sql();anim("s");
+</script></body></html>
